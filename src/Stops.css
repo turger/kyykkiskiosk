@@ -1,0 +1,21 @@
+.Stops {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.Stops__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  color: #f04;
+  height: 100%;
+}
+
+.Stops__item--name {
+  font-size: 40%;
+  order: 1;
+  margin-left: 10px;
+}

@@ -1,0 +1,31 @@
+.Footer {
+  display: flex;
+  flex-direction: row;
+  animation-name: Footer_slideIn;
+  animation-duration: 4s;
+  animation-delay: 2s;
+  animation-fill-mode: backwards;
+  animation-timing-function: cubic-bezier(.51,.01,.01,1);
+  animation-iteration-count: 1;
+  font-size: 40px;
+}
+
+.Footer .Stops {
+  flex: 4;
+}
+
+.Footer .Weather {
+  flex: 1;
+  color: #fff;
+}
+
+@keyframes Footer_slideIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 160px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

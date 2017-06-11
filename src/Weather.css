@@ -1,0 +1,11 @@
+.Weather {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #f04;
+}
+
+.Weather img {
+  height: 15px;
+}
