@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Messages from './Messages'
 import './Kyykkishotline.css'
 
 class Kyykkishotline extends Component {
@@ -13,7 +14,9 @@ class Kyykkishotline extends Component {
           <span>Kyykkis Hotline</span>
         </header>
 
-        
+        <Messages />
+
+
       </div>
     )
   }
