@@ -33,12 +33,10 @@ class Messages extends Component {
 
   render() {
     if (!this.state.messages) return null
-    console.log(this.state.messages)
-    console.log(parseMessages(this.state.messages))
     return (
       <div className="Messages">
         { parseMessages(this.state.messages).map(message =>
-          <p key={message.unixTimeStamp}> {message.unixTimeStamp} { message.content } </p>
+          <p key={message.unixTimeStamp}> { message.content } </p>
         )}
       </div>
     )

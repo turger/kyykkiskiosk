@@ -16,7 +16,6 @@ class Kyykkishotline extends Component {
 
         <Messages />
 
-
       </div>
     )
   }
