@@ -50,36 +50,9 @@
   transform: translate3d(0, 0, -600px);
 }
 
-.Kyykkishotline .Messages {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  text-align: center;
-  padding-top: 20px;
-  color: #f04;
-  animation-name: Kyykkishotline__awesomeMessages;
-  animation-duration: 4s;
-  animation-delay: 2s;
-  animation-fill-mode: backwards;
-  animation-timing-function: cubic-bezier(.51,.01,.01,1);
-  animation-iteration-count: 1;
-}
-
 @keyframes Kyykkishotline__awesome {
   0% {
     transform: translate3d(0, calc(50vh - 50px - 40px), 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes Kyykkishotline__awesomeMessages {
-  0% {
-    transform: translate3d(0, 100vh, 0);
   }
   100% {
     transform: translate3d(0, 0, 0);

@@ -36,7 +36,7 @@ class Messages extends Component {
     return (
       <div className="Messages">
         { parseMessages(this.state.messages).map(message =>
-          <p key={message.unixTimeStamp}> { message.content } </p>
+          <p className="Messages__message" key={message.unixTimeStamp}> { message.content } </p>
         )}
       </div>
     )
