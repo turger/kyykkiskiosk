@@ -15,7 +15,8 @@
     "whatwg-fetch": "^2.0.1"
   },
   "scripts": {
-    "start": "react-app-env --env-file=./.env start",
+    "start-dev": "react-app-env --env-file=./.env start",
+    "start": "react-scripts start",
     "build": "react-app-env --env-file=./.env build",
     "test": "react-scripts test --env=node",
     "eject": "react-scripts eject",
