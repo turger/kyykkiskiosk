@@ -17,7 +17,7 @@
   "scripts": {
     "start-dev": "react-app-env --env-file=./.env start",
     "start": "react-scripts start",
-    "build": "react-app-env --env-file=./.env build",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=node",
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build"
