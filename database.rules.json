@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "new": {
+      "message": {
+        ".write": "true",
+        ".read": "false"
+      }
+    }
+  }
+}

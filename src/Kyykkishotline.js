@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Messages from './Messages'
 import './Kyykkishotline.css'
+import Footer from './Footer'
 
 class Kyykkishotline extends Component {
 
@@ -13,9 +14,8 @@ class Kyykkishotline extends Component {
           <span>Kyykkis Hotline</span>
           <span>Kyykkis Hotline</span>
         </header>
-
         <Messages />
-
+        <Footer />
       </div>
     )
   }

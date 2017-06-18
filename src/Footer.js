@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './Footer.css'
 import Stops from './Stops'
 import Weather from './Weather'
-import { getSchedulesForStop, getWeatherData } from './Requests'
+import { getSchedulesForStop, getWeatherData } from './services/requests'
 import { STOP_MK, STOP_VN } from './constants'
 
 class Footer extends Component {

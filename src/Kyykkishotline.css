@@ -1,4 +1,8 @@
 .Kyykkishotline {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
   perspective: 800;
   transform-style: preserve-3d;
 }
@@ -8,7 +12,7 @@
   display: flex;
   left: 0;
   right: 0;
-  flex: 1;
+  flex: 0 0 100px;
   height: 100px;
   justify-content: center;
   align-items: center;
@@ -50,9 +54,17 @@
   transform: translate3d(0, 0, -600px);
 }
 
+
+
+.Kyykkishotline .Footer {
+
+}
+
+
+
 @keyframes Kyykkishotline__awesome {
   0% {
-    transform: translate3d(0, calc(50vh - 50px - 40px), 0);
+    transform: translate3d(0, calc(50vh - 50px), 0);
   }
   100% {
     transform: translate3d(0, 0, 0);
