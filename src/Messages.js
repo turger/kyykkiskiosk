@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Messages.css'
-import { getMessages } from './Firebase'
+import { pollMessages, stopPollMessages } from './services/firebase'
 
 const parseMessages = messages => {
   return Object.keys(messages)
@@ -19,25 +19,37 @@ class Messages extends Component {
   }
 
   componentDidMount() {
-    this.getMessages()
-    setInterval(() => {
-      this.getMessages()
-    } , 60000)
+    pollMessages(messages => {
+      this.setState({ messages })
+    })
   }
 
-  getMessages() {
-    getMessages().then(messages => {
-      this.setState({ messages: messages.val() })
-    })
+  componentWillUnmount() {
+    stopPollMessages()
+  }
+
+  updateBodyBackground(url) {
+    const body = document.body
+    body.style.backgroundImage = url ? `url(${url})` : ''
   }
 
   render() {
     if (!this.state.messages) return null
     return (
       <div className="Messages">
-        { parseMessages(this.state.messages).map(message =>
-          <p className="Messages__message" key={message.unixTimeStamp}> { message.content } </p>
-        )}
+        { parseMessages(this.state.messages).map(message => {
+          this.updateBodyBackground(message.image)
+          return (
+            <div className="Messages__message" key={message.id}>
+              <div className="Messages__emojis">
+                { message.emojis.map((emoji, i) => (
+                  <img alt="" src={emoji} key={i} />
+                )) }
+              </div>
+              <p>{ message.content }</p>
+            </div>
+          )
+        })}
       </div>
     )
   }

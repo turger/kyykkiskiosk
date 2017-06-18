@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-top: 30px;
   animation-name: Messages__awesomeMessages;
   animation-duration: 4s;
   animation-delay: 1s;
@@ -14,10 +13,24 @@
   animation-iteration-count: 1;
 }
 
-.Messages__message {
+.Messages__message p {
   color: #fff;
-  font-size: 20px;
+  font-size: 42px;
+  margin: 0;
 }
+
+.Messages__message {
+
+}
+
+.Messages__emojis img {
+  width: 64px;
+  height: auto;
+}
+
+
+
+
 
 @keyframes Messages__awesomeMessages {
   0% {

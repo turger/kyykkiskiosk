@@ -1,4 +1,7 @@
+import slack from 'slack'
+
 const SECONDS_IN_DAY = 86400
+const SLACK_TOKEN = process.env.REACT_APP_SLACK_TOKEN
 
 export const getTimeIfMoreThan60min = (minutesToDeparture, departureTimestamp) => {
   if (minutesToDeparture >= 60) {
@@ -37,4 +40,44 @@ export const minutesToDeparture = (stopTime, time = new Date()) => {
   const minutesToDeparture = Math.floor((arrivalTimeInSeconds - timeInSeconds) / 60)
 
   return minutesToDeparture
+}
+
+export const getEmojiList = () => new Promise(resolve => {
+  slack.emoji.list({ token: SLACK_TOKEN }, (err, data) => {
+    resolve(data.emoji)
+  })
+})
+
+export const cleanupMessage = (message, emojiList) => {
+  let newContent = message.content
+  const emojis = []
+  const images = []
+  const urlMatches = newContent.match(/\bhttps?:\/\/\S+/gi)
+  const emojiMatches = newContent.match(/(:(\w|-)*:)/gi)
+
+  if (urlMatches) {
+    urlMatches.forEach(url => {
+      newContent = newContent.replace(url, '')
+      images.push(url)
+    })
+  }
+
+  if (emojiMatches) {
+    emojiMatches.forEach(emoji => {
+      const emojiName = emoji.replace(/:/gi, '')
+      newContent = newContent.replace(emoji, '')
+      if (emojiList[emojiName]) {
+        emojis.push(emojiList[emojiName])
+      }
+    })
+  }
+
+  newContent = newContent.replace(/\*/gi, '')
+
+  return {
+    ...message,
+    content: newContent.trim(),
+    emojis,
+    image: images[0],
+  }
 }
