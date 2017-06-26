@@ -1,6 +1,7 @@
 .Footer {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   animation-name: Footer_slideIn;
   animation-duration: 1s;
   animation-delay: 0.5s;
