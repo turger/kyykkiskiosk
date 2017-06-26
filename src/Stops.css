@@ -6,16 +6,16 @@
 
 .Stops__item {
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
   flex: 1;
-  color: #f04;
+  color: white;
   height: 100%;
 }
 
 .Stops__item--name {
-  font-size: 40%;
+  font-size: 90%;
   order: 1;
   margin-left: 10px;
 }

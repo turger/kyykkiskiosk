@@ -10,7 +10,7 @@ export const getTimeIfMoreThan60min = (minutesToDeparture, departureTimestamp) =
     const minutes = ('0' + depDate.getUTCMinutes()).slice(-2)
     return `${hours}:${minutes}`
   } else {
-    return minutesToDeparture
+    return `${minutesToDeparture} min`
   }
 }
 
