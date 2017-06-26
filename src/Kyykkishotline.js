@@ -8,13 +8,13 @@ class Kyykkishotline extends Component {
   render() {
     return (
       <div className="Kyykkishotline">
-        <header>
+ {/*       <header>
           <span>Kyykkis Hotline</span>
           <span>Kyykkis Hotline</span>
           <span>Kyykkis Hotline</span>
           <span>Kyykkis Hotline</span>
         </header>
-        <Messages />
+        <Messages />*/}
         <Footer />
       </div>
     )
