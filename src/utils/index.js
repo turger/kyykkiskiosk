@@ -37,7 +37,7 @@ export const minutesToDeparture = (stopTime, time = new Date()) => {
     arrivalTimeInSeconds = stopTime.realtimeArrival
   }
 
-  const minutesToDeparture = Math.floor((arrivalTimeInSeconds - timeInSeconds) / 60)
+  const minutesToDeparture = Math.ceil((arrivalTimeInSeconds - timeInSeconds) / 60)
 
   return minutesToDeparture
 }
