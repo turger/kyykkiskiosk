@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import './Footer.css'
 import Stops from './Stops'
 import Weather from './Weather'
+import Clock from './Clock'
 import { getSchedulesForStop, getWeatherData } from './services/requests'
 import { STOP_MK, STOP_VN } from './constants'
 
@@ -11,18 +13,23 @@ class Footer extends Component {
     this.state = {
       stopData: undefined,
       weatherData: undefined,
+      dateTime: undefined
     }
   }
 
   componentDidMount() {
     this.getData()
     this.getWeatherData(2)
+    this.getDateTime()
     setInterval(() => {
       this.getData()
     } , 60000)
     setInterval(() => {
       this.getWeatherData()
     } , 600000)
+    setInterval(() => {
+      this.getDateTime()
+    } , 1000)
   }
 
   getData() {
@@ -44,11 +51,18 @@ class Footer extends Component {
     })
   }
 
+  getDateTime() {
+    let dateTime = moment().format("ddd D.M.YYYY HH:mm:ss")
+    dateTime = dateTime.replace("Mon", "Maanantai").replace("Tue", "Tiistai").replace("Wed", "Keskiviikko").replace("Thu", "Torstai").replace("Fri", "Perjantai").replace("Sat", "Lauantai").replace("Sun", "Sunnuntai")
+    this.setState({ dateTime })
+  }
+
   render() {
     if (!this.state.stopData) return null
     return (
       <div className="Footer">
-        <Stops stops={this.state.stopData}/>
+        <Clock dateTime={this.state.dateTime} />
+        <Stops stops={this.state.stopData} />
         <Weather weatherData={ this.state.weatherData } />
       </div>
     )
