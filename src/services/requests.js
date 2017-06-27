@@ -1,20 +1,27 @@
 import 'whatwg-fetch'
+const request = require('request-promise')
+const moment = require('moment')
+const parseXml = require('xml2js').parseString
 
 export const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY
+
 import { STOP_MK } from '../constants'
 
 export const getWeatherData = () => new Promise(resolve => {
-  fetch(`http://api.openweathermap.org/data/2.5/weather?id=658226&APPID=${WEATHER_API_KEY}&units=metric`)
+
+  const hourAgoUtc = moment().subtract(1, "hour").utc().format();
+
+  request(`http://data.fmi.fi/fmi-apikey/${WEATHER_API_KEY}/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Lauttasaari,Helsinki&parameters=temperature&starttime=${hourAgoUtc}`)
     .then(res => {
-      if (res.status !== 200) throw new Error(res.status)
-      return res.json()
-    })
-    .then(res => {
-      resolve(res)
-    })
-    .catch(err => {
-      console.warn(err)
-    })
+      parseXml(res, function (err, result) {
+        const results = result["wfs:FeatureCollection"]["wfs:member"];
+        const latest = results[results.length -1];
+        const latestTemp = latest["BsWfs:BsWfsElement"][0]["BsWfs:ParameterValue"][0];
+        resolve({
+          latestTemp
+        })
+      });
+    });
 })
 
 const getCurrentTimestamp = () => {

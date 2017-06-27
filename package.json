@@ -12,8 +12,10 @@
     "react-app-env": "^1.2.0",
     "react-dom": "^15.4.1",
     "react-scripts": "0.8.4",
+    "request-promise": "^4.2.1",
     "slack": "^8.3.1",
-    "whatwg-fetch": "^2.0.1"
+    "whatwg-fetch": "^2.0.1",
+    "xml2js": "^0.4.17"
   },
   "scripts": {
     "start-dev": "react-app-env --env-file=./.env start",
