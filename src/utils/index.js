@@ -1,3 +1,4 @@
+import React from "react"
 import slack from 'slack'
 
 const SECONDS_IN_DAY = 86400
@@ -10,7 +11,7 @@ export const getTimeIfMoreThan60min = (minutesToDeparture, departureTimestamp) =
     const minutes = ('0' + depDate.getUTCMinutes()).slice(-2)
     return `${hours}:${minutes}`
   } else {
-    return `${minutesToDeparture} min`
+    return <div className={minutesToDeparture < 2 ? "Stops__item--blink" : ""}>{minutesToDeparture} <span className="Stops__item--minutes">min</span></div>
   }
 }
 
