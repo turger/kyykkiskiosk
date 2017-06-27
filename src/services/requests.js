@@ -8,9 +8,7 @@ export const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY
 import { STOP_MK } from '../constants'
 
 export const getWeatherData = () => new Promise(resolve => {
-
   const hourAgoUtc = moment().subtract(1, "hour").utc().format();
-
   request(`http://data.fmi.fi/fmi-apikey/${WEATHER_API_KEY}/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Lauttasaari,Helsinki&parameters=temperature&starttime=${hourAgoUtc}`)
     .then(res => {
       parseXml(res, function (err, result) {
