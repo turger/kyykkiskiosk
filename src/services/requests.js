@@ -1,26 +1,40 @@
 import 'whatwg-fetch'
+import Promise from 'bluebird'
 const request = require('request-promise')
 const moment = require('moment')
 const parseXml = require('xml2js').parseString
 
 export const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY
 
-import { STOP_MK } from '../constants'
+import {STOP_MK} from '../constants'
 
-export const getWeatherData = () => new Promise(resolve => {
-  const hourAgoUtc = moment().subtract(1, "hour").utc().format();
-  request(`http://data.fmi.fi/fmi-apikey/${WEATHER_API_KEY}/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Lauttasaari,Helsinki&parameters=temperature&starttime=${hourAgoUtc}`)
-    .then(res => {
-      parseXml(res, function (err, result) {
-        const results = result["wfs:FeatureCollection"]["wfs:member"];
-        const latest = results[results.length -1];
-        const latestTemp = latest["BsWfs:BsWfsElement"][0]["BsWfs:ParameterValue"][0];
-        resolve({
-          latestTemp
-        })
+export const getWeatherData = () => {
+  return Promise.join(getForecast(), getLatestTemp(), (forecast, latestTemp) => {
+    return {
+      forecast: forecast,
+      latestTemp: latestTemp
+    }
+  })
+}
+
+const getForecast = () => {
+  return request("https://mtdgma05af.execute-api.eu-west-1.amazonaws.com/dev/hello")
+}
+
+const getLatestTemp = () => {
+  return new Promise(resolve => {
+    const hourAgoUtc = moment().subtract(1, "hour").utc().format();
+    return request(`http://data.fmi.fi/fmi-apikey/${WEATHER_API_KEY}/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Lauttasaari,Helsinki&parameters=temperature&starttime=${hourAgoUtc}`)
+      .then(res => {
+        parseXml(res, function (err, result) {
+          const results = result["wfs:FeatureCollection"]["wfs:member"];
+          const latest = results[results.length - 1];
+          const latestTemp = latest["BsWfs:BsWfsElement"][0]["BsWfs:ParameterValue"][0];
+          resolve(latestTemp)
+        });
       });
-    });
-})
+  })
+}
 
 const getCurrentTimestamp = () => {
   const date = new Date()
@@ -96,13 +110,13 @@ export const getSchedulesForStop = (stopId, startTime = getCurrentTimestamp()) =
     }
   }
 }`
-).then(res => res.data.stop).then(stop => {
-  if (stop.gtfsId === STOP_MK) {
-    const filteredStop = stop
-    stop.stoptimesWithoutPatterns = stop.stoptimesWithoutPatterns.filter(stopTime => {
-      return stopTime.trip.route.shortName !== '20N'
-    })
-    return filteredStop
-  }
-  return stop
-})
+  ).then(res => res.data.stop).then(stop => {
+    if (stop.gtfsId === STOP_MK) {
+      const filteredStop = stop
+      stop.stoptimesWithoutPatterns = stop.stoptimesWithoutPatterns.filter(stopTime => {
+        return stopTime.trip.route.shortName !== '20N'
+      })
+      return filteredStop
+    }
+    return stop
+  })

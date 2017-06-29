@@ -12,15 +12,6 @@
   font-size: 50px;
 }
 
-.Footer .Stops {
-  flex: 4;
-}
-
-.Footer .Weather {
-  flex: 1;
-  color: #fff;
-}
-
 @keyframes Footer_slideIn {
   0% {
     opacity: 0;

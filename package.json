@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bluebird": "^3.5.0",
+    "cheerio": "^1.0.0-rc.1",
     "classnames": "^2.2.5",
     "cross-env": "^5.0.1",
     "emojione": "^2.2.7",
