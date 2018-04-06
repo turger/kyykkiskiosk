@@ -12,7 +12,7 @@ const parseStops = stops => {
     }, [])
     .map(stop => stop.stoptimesWithoutPatterns
       .filter(filterMinusMin)
-      .slice(0, 2)
+      .slice(0, 4)
     )
     .reduce((flattedStops, stop) => [...flattedStops, ...stop], [])
     .sort((a, b) => minutesToDeparture(a) - minutesToDeparture(b))
