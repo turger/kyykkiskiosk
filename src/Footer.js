@@ -34,7 +34,6 @@ class Footer extends Component {
 
   getData() {
     this.getDataForStop(STOP_MK)
-    this.getDataForStop(STOP_VN)
   }
 
   getDataForStop(stopId) {
