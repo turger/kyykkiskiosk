@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background: #2c0734;
 }
 
 .App .Kyykkishotline {
