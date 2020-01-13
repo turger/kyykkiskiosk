@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Messages from './Messages'
 import './Kyykkishotline.css'
 import Footer from './Footer'
 

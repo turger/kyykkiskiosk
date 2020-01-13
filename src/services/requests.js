@@ -19,12 +19,15 @@ export const getWeatherData = () => {
 
 const getForecast = () => {
   return request("https://mtdgma05af.execute-api.eu-west-1.amazonaws.com/dev/hello")
+    .catch(err => {
+      console.warn('Error getting forecast', err)
+    })
 }
 
 const getLatestTemp = () => {
   return new Promise(resolve => {
     const hourAgoUtc = moment().subtract(1, "hour").utc().format();
-    return request(`http://data.fmi.fi/fmi-apikey/${WEATHER_API_KEY}/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Lauttasaari,Helsinki&parameters=temperature&starttime=${hourAgoUtc}`)
+    return request(`http://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Lauttasaari,Helsinki&parameters=temperature&starttime=${hourAgoUtc}`)
       .then(res => {
         parseXml(res, function (err, result) {
           const results = result["wfs:FeatureCollection"]["wfs:member"];
@@ -32,7 +35,9 @@ const getLatestTemp = () => {
           const latestTemp = latest["BsWfs:BsWfsElement"][0]["BsWfs:ParameterValue"][0];
           resolve(latestTemp)
         });
-      });
+      }).catch(err => {
+        console.warn('Error getting current temp', err)
+      })
   })
 }
 
