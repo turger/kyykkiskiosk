@@ -24,8 +24,40 @@
     height: 40px;
 }
 
+div.Weather > table > thead > tr > th:nth-child(2) {
+    text-align: inherit !important;
+}
+
+.forecast {
+    width: 50%;
+}
+
+th[role=main] {
+    text-align: center;
+}
+
+div.Weather > table > thead > tr > th:nth-child(4) {
+    display: none !important;
+}
+
+td.fmi-bg-light.text-center.wind > div > div {
+   justify-content: center;
+}
+
+td.precipitation > div > span.text-right {
+    display: none !important;
+}
+
+.fmi-bg-light.text-center.wind > div > div > span:nth-child(2) {
+    display: none !important;
+}
+
+.hourly-table-feelslike {
+    display: none !important;
+}
+
 [id^=day-header] {
-  display: none !important;
+    display: none !important;
 }
 
 .weather-symbol.code-0-1 {
@@ -677,7 +709,7 @@ td:nth-child(11) {
 }
 
 .map-selector-panel {
-    background-color: #e7f0fa;
+
     border-top-left-radius: 6px;
     border-top-right-radius: 6px
 }
@@ -724,7 +756,7 @@ td:nth-child(11) {
 
 .map-selector-bottom-button {
     height: 42px;
-    background-color: #e7f0fa !important;
+
     color: #303193 !important;
     border: none !important;
     outline: none !important;
@@ -964,7 +996,7 @@ td:nth-child(11) {
 }
 
 .fmi-tab[data-v-03e278aa] {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -1072,7 +1104,7 @@ td:nth-child(11) {
 }
 
 .vertical-forecast-table[data-v-03e278aa] {
-    background-color: #e7f0fa
+
 }
 
 .vertical-forecast-table td[data-v-03e278aa] {
@@ -1132,10 +1164,6 @@ td:nth-child(11) {
 
 .hourly-table td.precipitation[data-v-03e278aa], .hourly-table td.wind[data-v-03e278aa] {
     width: 20%
-}
-
-.hourly-table-hour[data-v-03e278aa] {
-    background-color: #e7f0fa
 }
 
 .hourly-table-feelslike[data-v-03e278aa] {
@@ -1338,7 +1366,7 @@ td:nth-child(11) {
 }
 
 .fmi-tab[data-v-fae11f88] {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -1446,7 +1474,7 @@ td:nth-child(11) {
 }
 
 .vertical-forecast-table[data-v-fae11f88] {
-    background-color: #e7f0fa
+
 }
 
 .vertical-forecast-table td[data-v-fae11f88] {
@@ -1508,10 +1536,6 @@ td:nth-child(11) {
     width: 20%
 }
 
-.hourly-table-hour[data-v-fae11f88] {
-    background-color: #e7f0fa
-}
-
 .hourly-table-feelslike[data-v-fae11f88] {
     padding-bottom: 12px !important
 }
@@ -1548,7 +1572,7 @@ td:nth-child(11) {
 }
 
 .fmi-tab, .nav-tabs .nav-link {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -1785,7 +1809,7 @@ td:nth-child(11) {
 }
 
 .fmi-tab[data-v-7cc0f672] {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -1893,7 +1917,7 @@ td:nth-child(11) {
 }
 
 .vertical-forecast-table[data-v-7cc0f672] {
-    background-color: #e7f0fa
+
 }
 
 .vertical-forecast-table td[data-v-7cc0f672] {
@@ -1955,10 +1979,6 @@ td:nth-child(11) {
     width: 20%
 }
 
-.hourly-table-hour[data-v-7cc0f672] {
-    background-color: #e7f0fa
-}
-
 .hourly-table-feelslike[data-v-7cc0f672] {
     padding-bottom: 12px !important
 }
@@ -2018,9 +2038,6 @@ td:nth-child(11) {
     background: url(https://www.ilmatieteenlaitos.fi/img/table-view-turquoise.svg) no-repeat 50%
 }
 
-.hourly-table-header {
-    background-color: #e7f0fa
-}
 
 .next-days-table .top-left-corner {
     border-top-left-radius: 6px
@@ -2258,7 +2275,7 @@ td:nth-child(11) {
 }
 
 .fmi-tab {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -2453,7 +2470,7 @@ td:nth-child(11) {
 }
 
 .local-weather-header-panel[data-v-3ed07586] {
-    background-color: #e7f0fa;
+
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px
 }
@@ -2477,7 +2494,7 @@ td:nth-child(11) {
 }
 
 .map-selector-panel {
-    background-color: #e7f0fa;
+
     border-top-left-radius: 6px;
     border-top-right-radius: 6px
 }
@@ -2524,7 +2541,7 @@ td:nth-child(11) {
 
 .map-selector-bottom-button {
     height: 42px;
-    background-color: #e7f0fa !important;
+
     color: #303193 !important;
     border: none !important;
     outline: none !important;
@@ -2764,7 +2781,7 @@ td:nth-child(11) {
 }
 
 .fmi-tab[data-v-03e278aa] {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -2871,9 +2888,6 @@ td:nth-child(11) {
     background-color: #3a66e3
 }
 
-.vertical-forecast-table[data-v-03e278aa] {
-    background-color: #e7f0fa
-}
 
 .vertical-forecast-table td[data-v-03e278aa] {
     padding: 0;
@@ -2934,9 +2948,6 @@ td:nth-child(11) {
     width: 20%
 }
 
-.hourly-table-hour[data-v-03e278aa] {
-    background-color: #e7f0fa
-}
 
 .hourly-table-feelslike[data-v-03e278aa] {
     padding-bottom: 12px !important
@@ -3138,7 +3149,7 @@ td:nth-child(11) {
 }
 
 .fmi-tab[data-v-fae11f88] {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -3246,7 +3257,7 @@ td:nth-child(11) {
 }
 
 .vertical-forecast-table[data-v-fae11f88] {
-    background-color: #e7f0fa
+
 }
 
 .vertical-forecast-table td[data-v-fae11f88] {
@@ -3308,10 +3319,6 @@ td:nth-child(11) {
     width: 20%
 }
 
-.hourly-table-hour[data-v-fae11f88] {
-    background-color: #e7f0fa
-}
-
 .hourly-table-feelslike[data-v-fae11f88] {
     padding-bottom: 12px !important
 }
@@ -3348,7 +3355,7 @@ td:nth-child(11) {
 }
 
 .fmi-tab, .nav-tabs .nav-link {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -3585,7 +3592,7 @@ td:nth-child(11) {
 }
 
 .fmi-tab[data-v-7cc0f672] {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -3693,7 +3700,7 @@ td:nth-child(11) {
 }
 
 .vertical-forecast-table[data-v-7cc0f672] {
-    background-color: #e7f0fa
+
 }
 
 .vertical-forecast-table td[data-v-7cc0f672] {
@@ -3756,7 +3763,7 @@ td:nth-child(11) {
 }
 
 .hourly-table-hour[data-v-7cc0f672] {
-    background-color: #e7f0fa
+
 }
 
 .hourly-table-feelslike[data-v-7cc0f672] {
@@ -3819,7 +3826,7 @@ td:nth-child(11) {
 }
 
 .hourly-table-header {
-    background-color: #e7f0fa
+
 }
 
 .next-days-table .top-left-corner {
@@ -4058,7 +4065,7 @@ td:nth-child(11) {
 }
 
 .fmi-tab {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -4253,7 +4260,7 @@ td:nth-child(11) {
 }
 
 .local-weather-header-panel[data-v-3ed07586] {
-    background-color: #e7f0fa;
+
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px
 }
@@ -4519,7 +4526,7 @@ caption {
 }
 
 th {
-    text-align: inherit
+    text-align: center
 }
 
 label {
@@ -16079,12 +16086,7 @@ a {
 }
 
 .offscreen {
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
     white-space: nowrap;
-    width: 1px
 }
 
 [data-whatintent=mouse] :focus {
@@ -16364,13 +16366,13 @@ ul.auroras-and-space li.blue {
 }
 
 .menuopen .megamenu-panel {
-    background-color: #e7f0fa
+
 }
 
 .menuopen .megamenu-panel:before {
     content: "";
     position: absolute;
-    background-color: #e7f0fa;
+
     top: 0;
     left: 0;
     width: 100%;
@@ -16412,12 +16414,12 @@ ul.auroras-and-space li.blue {
 }
 
 .mobile-site-search-panel {
-    background-color: #e7f0fa
+
 }
 
 .mobile-menu-weather-search {
     width: 100%;
-    background-color: #e7f0fa;
+
     padding-right: calc(1rem - 2px) !important
 }
 
@@ -16616,7 +16618,7 @@ ol {
 }
 
 .fmi-tag {
-    background-color: #e7f0fa !important;
+
     color: #303193 !important;
     border: 3px solid transparent !important;
     outline: none !important;
@@ -16645,15 +16647,11 @@ ol {
 }
 
 .fmi-bg-secondary {
-    background-color: #e7f0fa !important
-}
 
-.fmi-bg-light {
-    background-color: #fafcfe !important
 }
 
 .fmi-bg-wind-level1 {
-    background-color: #e7f0fa !important
+
 }
 
 .fmi-bg-wind-level2 {
@@ -16710,7 +16708,7 @@ ol {
 .img-caption {
     color: #303193;
     font-size: 14px;
-    background-color: #e7f0fa;
+
     padding: 18px 30px
 }
 
@@ -16945,7 +16943,7 @@ hr {
 }
 
 .fmi-tab[data-v-c17fbe4a] {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -16984,7 +16982,7 @@ hr {
     font-size: 16px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    background-color: #e7f0fa;
+
     border-color: #e7f0fa;
     border: 2px solid #e7f0fa !important;
     border-right: 0 !important;
@@ -17074,7 +17072,7 @@ hr {
 }
 
 .search-result-item.active[data-v-c17fbe4a], .search-result-item[data-v-c17fbe4a]:hover {
-    background-color: #e7f0fa
+
 }
 
 .search-result-item > a[data-v-c17fbe4a]:hover {
@@ -17192,7 +17190,7 @@ button.own-location-button[data-v-c17fbe4a]:focus {
 }
 
 .language-selector .dropdown-item:focus, .language-selector .dropdown-item:hover {
-    background-color: #e7f0fa
+
 }
 
 .language-selector-option {
@@ -17366,7 +17364,7 @@ button.own-location-button[data-v-c17fbe4a]:focus {
 }
 
 .fmi-tab {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -17463,7 +17461,7 @@ button.own-location-button[data-v-c17fbe4a]:focus {
 }
 
 .gsc-completion-container td:hover {
-    background-color: #e7f0fa !important
+
 }
 
 .gstl_51.gssb_c {
@@ -17473,7 +17471,7 @@ button.own-location-button[data-v-c17fbe4a]:focus {
 @media (max-width: 767px) {
     #site-search {
         padding: 24px 0;
-        background-color: #e7f0fa
+
     }
 
     #site-search .w-100 {
@@ -17674,7 +17672,7 @@ button.own-location-button[data-v-c17fbe4a]:focus {
 }
 
 .fmi-tab[data-v-7696d114] {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
@@ -17718,7 +17716,7 @@ button.own-location-button[data-v-c17fbe4a]:focus {
 }
 
 .accordion a[data-v-7696d114]:hover {
-    background-color: #e7f0fa
+
 }
 
 .accordion-menu.level-1[data-v-7696d114], .main-level[data-v-7696d114] {
@@ -17788,7 +17786,7 @@ span.link-text[data-v-7696d114] {
 }
 
 .openClose[data-v-7696d114]:hover {
-    background-color: #e7f0fa !important
+
 }
 
 .openClose[data-v-7696d114]:disabled {
@@ -17964,7 +17962,7 @@ span.link-text[data-v-7696d114] {
 }
 
 .fmi-tab[data-v-17b1453a] {
-    background-color: #e7f0fa;
+
     color: #303193;
     font-weight: 700;
     border: 3px solid transparent !important;
