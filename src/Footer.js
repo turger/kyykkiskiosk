@@ -60,7 +60,7 @@ class Footer extends Component {
     if (!this.state.stopData) return null
     return (
       <div className="Footer">
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}>
           <Clock dateTime={this.state.dateTime} />
         </div>
         <div className="weather-and-stops">

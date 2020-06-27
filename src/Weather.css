@@ -28,10 +28,19 @@
 .weather-and-stops {
     display: flex;
     justify-content: space-around;
+    flex: 1;
 }
 
 th[role=columnheader] {
     font-size: 15px;
+}
+
+#hour-row-1 {
+    display: none;
+}
+
+#hour-row-3 {
+    display: none;
 }
 
 .left {
@@ -42,6 +51,7 @@ th[role=columnheader] {
 
 .forecast {
     width: 80%;
+    height: 80%;    
 }
 
 th[role=main] {
