@@ -1,7 +1,7 @@
 .Stops {
   display: flex;
   flex: 1;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .Stops__item {

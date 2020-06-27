@@ -4,6 +4,7 @@
     color: #fff;
     display: flex;
     justify-content: space-around;
+    flex: 1;
 }
 
 .Weather img {
@@ -24,12 +25,23 @@
     height: 40px;
 }
 
-div.Weather > table > thead > tr > th:nth-child(2) {
-    text-align: inherit !important;
+.weather-and-stops {
+    display: flex;
+    justify-content: space-around;
+}
+
+th[role=columnheader] {
+    font-size: 15px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
 }
 
 .forecast {
-    width: 50%;
+    width: 80%;
 }
 
 th[role=main] {

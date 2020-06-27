@@ -6,14 +6,8 @@ class Weather extends Component {
     const { weatherData } = this.props
     if (!weatherData) return null
 
-    console.log(weatherData)
-
     return (
       <div className="Weather">
-        <div className="latest" style={{"font-size": "45px"}}>
-          <div style={{"margin-bottom": "10px", "font-size": "25px", "text-align": "center"}}>Nyt</div>
-          <div>{ weatherData.latestTemp }°</div>
-        </div>
         <table className="forecast" dangerouslySetInnerHTML={{__html: weatherData.forecast}}/>
       </div>
     )

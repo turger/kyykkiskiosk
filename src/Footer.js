@@ -60,9 +60,21 @@ class Footer extends Component {
     if (!this.state.stopData) return null
     return (
       <div className="Footer">
-        <Clock dateTime={this.state.dateTime} />
-        <Stops stops={this.state.stopData} />
-        <Weather weatherData={ this.state.weatherData } />
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Clock dateTime={this.state.dateTime} />
+        </div>
+        <div className="weather-and-stops">
+          <div className="left">
+            <Stops stops={this.state.stopData} />
+            <div className="Weather">
+              <div className="latest" style={{"font-size": "30px"}}>
+                <div style={{"margin-bottom": "10px", "font-size": "25px", "text-align": "center"}}>Nyt</div>
+                <div>{ this.state.weatherData.latestTemp }°</div>
+              </div>
+            </div>
+          </div>
+          <Weather weatherData={ this.state.weatherData } />
+        </div>
       </div>
     )
   }
