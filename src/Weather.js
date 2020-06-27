@@ -6,6 +6,8 @@ class Weather extends Component {
     const { weatherData } = this.props
     if (!weatherData) return null
 
+    console.log(weatherData)
+
     return (
       <div className="Weather">
         <div className="latest" style={{"font-size": "45px"}}>
