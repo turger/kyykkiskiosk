@@ -69,7 +69,7 @@ class Footer extends Component {
             <div className="Weather">
               <div className="latest" style={{"font-size": "30px"}}>
                 <div style={{"margin-bottom": "10px", "font-size": "25px", "text-align": "center"}}>Nyt</div>
-                <div>{ this.state.weatherData.latestTemp }°</div>
+                <div style={{ fontSize: 40 }}>{ this.state.weatherData.latestTemp }°</div>
               </div>
             </div>
           </div>

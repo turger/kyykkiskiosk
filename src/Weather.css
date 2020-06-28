@@ -51,6 +51,10 @@ th[role=columnheader] {
     display: table-row;
 }
 
+#hour-row-10 {
+    display: table-row;
+}
+
 [id^=hour-row-] {
     display: none;
 }
@@ -63,7 +67,7 @@ th[role=columnheader] {
 
 .forecast {
     width: 80%;
-    height: 80%;
+    height: 95%;
 }
 
 th[role=main] {
