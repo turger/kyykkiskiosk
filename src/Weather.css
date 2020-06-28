@@ -35,11 +35,23 @@ th[role=columnheader] {
     font-size: 15px;
 }
 
-#hour-row-1 {
-    display: none;
+#hour-row-2 {
+    display: table-row;
 }
 
-#hour-row-3 {
+#hour-row-4 {
+    display: table-row;
+}
+
+#hour-row-6 {
+    display: table-row;
+}
+
+#hour-row-8 {
+    display: table-row;
+}
+
+[id^=hour-row-] {
     display: none;
 }
 
@@ -51,7 +63,7 @@ th[role=columnheader] {
 
 .forecast {
     width: 80%;
-    height: 80%;    
+    height: 80%;
 }
 
 th[role=main] {
