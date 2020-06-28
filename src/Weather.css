@@ -51,12 +51,13 @@ th[role=columnheader] {
     display: table-row;
 }
 
-#hour-row-10 {
+#hour-row-1 {
     display: table-row;
 }
 
 [id^=hour-row-] {
     display: none;
+    height: 60px;
 }
 
 .left {
