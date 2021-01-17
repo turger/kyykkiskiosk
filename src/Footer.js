@@ -5,7 +5,7 @@ import Stops from './Stops'
 import Weather from './Weather'
 import Clock from './Clock'
 import { getSchedulesForStop, getWeatherData } from './services/requests'
-import { STOP_MK, STOP_VN } from './constants'
+import { STOP_BM } from './constants'
 
 class Footer extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class Footer extends Component {
   }
 
   getData() {
-    this.getDataForStop(STOP_MK)
+    this.getDataForStop(STOP_BM)
   }
 
   getDataForStop(stopId) {

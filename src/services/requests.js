@@ -27,7 +27,7 @@ const getForecast = () => {
 const getLatestTemp = () => {
   return new Promise(resolve => {
     const hourAgoUtc = moment().subtract(1, "hour").utc().format();
-    return request(`http://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Lauttasaari,Helsinki&parameters=temperature&starttime=${hourAgoUtc}`)
+    return request(`http://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Saunalahti,Espoo&parameters=temperature&starttime=${hourAgoUtc}`)
       .then(res => {
         parseXml(res, function (err, result) {
           const results = result["wfs:FeatureCollection"]["wfs:member"];

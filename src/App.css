@@ -1,4 +1,5 @@
 .App {
+  transform: rotate(180deg);
   height: 100%;
   display: flex;
   flex-direction: column;

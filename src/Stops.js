@@ -19,22 +19,35 @@ const parseStops = stops => {
 }
 
 const LineName = (name) => {
-  const number = name.substring(0, 2)
-  const letter = name.substring(2, name.length)
   return (
     <div className="Stops__item--name">
-      <span>{number}</span><span className="Stops__item--letter">{letter}</span>
+      <span>🚌 {name}</span>
+    </div>
+  )
+}
+
+const LineDestination = (longName) => {
+
+  const destination = longName.split('-')[0]
+
+  return (
+    <div className="Stops__item--destination">
+      <span>{destination}</span>
     </div>
   )
 }
 
 const Stop = ({stops}) => {
+  console.log("stops", stops)
+
+
   return (
     <div className="Stops">
       { parseStops(stops).map(stopTime => (
         <div className="Stops__item" key={stopKey(stopTime)}>
           <div className="Stops__item--name">
             {LineName(stopTime.trip.route.shortName)}
+            {LineDestination(stopTime.trip.route.longName)}
           </div>
           <div className="Stops__item--time">
             { getTimeIfMoreThan60min(minutesToDeparture(stopTime), stopTime.realtimeArrival) }

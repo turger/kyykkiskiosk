@@ -12,6 +12,7 @@
   flex: 1;
   color: white;
   height: 100%;
+  padding-top: 15px;
 }
 
 .Stops__item--name {
@@ -19,6 +20,13 @@
   order: 1;
   margin-left: 10px;
 }
+
+.Stops__item--destination {
+  font-size: 60%;
+  order: 1;
+  margin-left: 10px;
+}
+
 
 .Stops__item--minutes {
   font-size: 70%;
