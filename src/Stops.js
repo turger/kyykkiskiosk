@@ -1,4 +1,5 @@
 import React from 'react'
+import joypixels from 'emoji-toolkit'
 import './Stops.css'
 import { minutesToDeparture, getTimeIfMoreThan60min } from './utils'
 
@@ -19,9 +20,12 @@ const parseStops = stops => {
 }
 
 const LineName = (name) => {
+  const bussi = joypixels.shortnameToImage(':bus:')
+  console.log(bussi)
   return (
-    <div className="Stops__item--name">
-      <span>🚌 {name}</span>
+    <div className="Stops__item--name-item">
+      <span dangerouslySetInnerHTML={ { __html: bussi } }/>
+      <span className="Stops__item--name-item-name">{name}</span>
     </div>
   )
 }
@@ -38,8 +42,6 @@ const LineDestination = (longName) => {
 }
 
 const Stop = ({stops}) => {
-  console.log("stops", stops)
-
 
   return (
     <div className="Stops">
