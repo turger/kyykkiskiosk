@@ -4,6 +4,8 @@ import './Stops.css'
 import Stop from './Stop'
 import { getSchedulesForStop } from './Requests'
 
+const STOP_IDS = 'HSL:2423207,HSL:2423228'
+
 class Stops extends Component {
   constructor(props) {
     super(props)
@@ -21,7 +23,7 @@ class Stops extends Component {
   }
 
   getStopsData() {
-    const stopIds = process.env.REACT_APP_STOP_IDS ? process.env.REACT_APP_STOP_IDS.split(',') : []
+    const stopIds = STOP_IDS ? STOP_IDS.split(',') : []
     if (_.isEmpty(stopIds)) this.setState({errorMessage: 'No stops found!'})
     stopIds.forEach((stopId,i) => {
       if (stopId.includes(';')) {
