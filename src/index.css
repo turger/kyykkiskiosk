@@ -1,11 +1,12 @@
+:root {
+  --percentage: 100;
+  --deg: 90deg;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: Quicksand, sans-serif;
-  background-color: #000;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
+  font-family: 'Open Sans', sans-serif;
 }
 
 html, body, #root {

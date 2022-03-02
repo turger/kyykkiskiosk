@@ -1,12 +1,17 @@
 .App {
-  transform: rotate(180deg);
-  height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  background: #2c0734;
+  height: 100%;
+  background-color: #180727;
 }
 
-.App .Kyykkishotline {
-  height: calc(100% - 80px);
+.App__top {
+  display: flex;
+  width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+  .App {
+    padding-right: 20px;
+  }
 }

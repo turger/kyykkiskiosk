@@ -1,0 +1,32 @@
+.Stop {
+  padding: 0;
+}
+
+.Stop__route {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding-bottom: 3px;
+}
+
+.Stop__route:last-child {
+  padding-bottom: 0px;
+}
+
+.Stop__route--number {
+  flex: 2;
+  min-width: 30px;
+  text-align: center;
+}
+
+.Stop__route--headsign {
+  flex: 4;
+  font-size: 14px;
+}
+
+.Stop__route--time {
+  flex: 1;
+  text-align: end;
+  font-size: 18px;
+}
+

@@ -1,0 +1,12 @@
+.Vehicle {
+  justify-self: center;
+}
+
+.Vehicle__icon__svg {
+  margin-bottom: -5px;
+  width: 16px;
+}
+
+.Vehicle__icon__svg path {
+  fill: #ffffff !important;
+}

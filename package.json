@@ -3,29 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bluebird": "^3.5.0",
-    "cheerio": "^1.0.0-rc.1",
-    "classnames": "^2.2.5",
-    "cross-env": "^5.0.1",
-    "emoji-toolkit": "^6.0.1",
-    "emojione": "^2.2.7",
-    "firebase": "^4.1.2",
-    "moment": "^2.18.1",
-    "react": "^15.4.1",
-    "react-app-env": "^1.2.0",
-    "react-dom": "^15.4.1",
-    "react-scripts": "0.8.4",
-    "request-promise": "^4.2.1",
-    "slack": "^8.3.1",
-    "whatwg-fetch": "^2.0.1",
-    "xml2js": "^0.4.17"
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-emojione": "^5.0.1",
+    "react-scripts": "3.2.0",
+    "react-svg": "^11.0.19",
+    "whatwg-fetch": "^3.0.0",
+    "xml2js": "^0.4.23"
   },
   "scripts": {
-    "start-dev": "react-app-env --env-file=./.env start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=node",
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -1,0 +1,52 @@
+.Bikes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  background: linear-gradient(27deg, rgba(18,135,183,1) 0%, rgba(43,195,194,1) 69%);
+  color: #ffffff;
+  margin: 10px 10px 5px 5px;
+}
+
+.BikeStop {
+  width: 50%;
+  position: relative;
+}
+
+.BikeStop__availability {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+}
+
+.BikeStop__availability__name {
+  font-size: 14px;
+}
+
+.BikeStop__availability__amount {
+  font-size: 18px;
+}
+
+.circular-chart {
+  display: block;
+  margin: 8px auto;
+  max-height: 80px;
+  max-width: 80%;
+
+}
+
+.circle {
+  stroke: #acecec;
+  fill: none;
+  stroke-width: 2.8px;
+  stroke-linecap: round;
+  stroke-dasharray: var(--percentage), 100;
+}

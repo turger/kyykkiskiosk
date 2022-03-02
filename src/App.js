@@ -1,15 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './App.css'
-import Kyykkishotline from './Kyykkishotline'
+import Bikes from './Bikes'
+import Stops from './Stops'
+import Weather from './Weather'
+import DateTime from './DateTime'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Kyykkishotline />
-      </div>
-    )
-  }
-}
+const App = () => (
+  <div className="App" >
+    <div className="App__top">
+      <DateTime/>
+      {/*<Bikes/>*/}
+    </div>
+    <Stops/>
+    <Weather/>
+  </div>
+)
 
 export default App

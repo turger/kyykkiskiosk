@@ -1,63 +1,79 @@
-import React from 'react'
-import joypixels from 'emoji-toolkit'
+import React, { Component } from 'react'
+import _ from 'lodash'
 import './Stops.css'
-import { minutesToDeparture, getTimeIfMoreThan60min } from './utils'
+import Stop from './Stop'
+import { getSchedulesForStop } from './Requests'
 
-const stopKey = stopTime => `${stopTime.trip.route.gtfsId}-${stopTime.realtimeArrival}`
-const filterMinusMin = stopTime => !Number.isInteger(minutesToDeparture(stopTime)) || minutesToDeparture(stopTime) > -1
-const parseStops = stops => {
-  return Object.keys(stops)
-    .reduce((stopsArr, key) => {
-      stopsArr.push(stops[key])
-      return stopsArr
-    }, [])
-    .map(stop => stop.stoptimesWithoutPatterns
-      .filter(filterMinusMin)
-      .slice(0, 2)
+class Stops extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      stopsData: {},
+      errorMessage: null,
+    }
+  }
+
+  componentDidMount() {
+    this.getStopsData()
+    setInterval(() => {
+      this.getStopsData()
+    } , 60000)
+  }
+
+  getStopsData() {
+    const stopIds = process.env.REACT_APP_STOP_IDS ? process.env.REACT_APP_STOP_IDS.split(',') : []
+    if (_.isEmpty(stopIds)) this.setState({errorMessage: 'No stops found!'})
+    stopIds.forEach((stopId,i) => {
+      if (stopId.includes(';')) {
+        stopId.split(';').forEach(stopId => this.getSchedules(stopId, i, {merge: true}))
+      } else {
+        this.getSchedules(stopId, i)
+      }
+    })
+  }
+
+  getSchedules = (stopId, i, {merge = false} = {}) => {
+    getSchedulesForStop(stopId).then(stopTimes => {
+      const stopsData = this.state.stopsData
+      stopsData[i] = merge ? this.mergeStops(stopsData[i], stopTimes) : stopTimes
+      this.setState({ stopsData })
+    })
+  }
+
+  mergeStops = (currentStopTimes, newStopTimes) => {
+    if (!currentStopTimes || _.isEmpty(newStopTimes)) return newStopTimes
+    if (_.get(currentStopTimes, 'gtfsId').includes(_.get(newStopTimes, 'gtfsId'))) return newStopTimes
+    const mergedStopTimes = {}
+    Object.keys(newStopTimes).forEach(i => {
+      if(typeof newStopTimes[i] === 'string') {
+        mergedStopTimes[i] = ```${newStopTimes[i]};${currentStopTimes[i]}`
+      } else {
+        mergedStopTimes[i] = _.orderBy([...currentStopTimes[i], ...newStopTimes[i]], ['serviceDay', 'realtimeArrival'])
+      }
+    })
+    return mergedStopTimes
+  }
+
+  render() {
+    const {stopsData, errorMessage} = this.state
+    if (!stopsData) return null
+    return (
+      <div className="Stops">
+        { errorMessage && <div>{errorMessage}</div> }
+        { Object.keys(stopsData)
+          .sort((a, b) => a > b)
+          .map( key =>
+            <div className="Stops__box" key={key}>
+              {stopsData[key] &&
+                <Stop stops={stopsData[key].stoptimesWithoutPatterns} directions={stopsData[key].patterns}/>
+              }
+            </div>
+          )
+        }
+      </div>
     )
-    .reduce((flattedStops, stop) => [...flattedStops, ...stop], [])
-    .sort((a, b) => minutesToDeparture(a) - minutesToDeparture(b))
+  }
+
 }
 
-const LineName = (name) => {
-  const bussi = joypixels.shortnameToImage(':bus:')
-  console.log(bussi)
-  return (
-    <div className="Stops__item--name-item">
-      <span dangerouslySetInnerHTML={ { __html: bussi } }/>
-      <span className="Stops__item--name-item-name">{name}</span>
-    </div>
-  )
-}
-
-const LineDestination = (longName) => {
-
-  const destination = longName.split('-')[0]
-
-  return (
-    <div className="Stops__item--destination">
-      <span>{destination}</span>
-    </div>
-  )
-}
-
-const Stop = ({stops}) => {
-
-  return (
-    <div className="Stops">
-      { parseStops(stops).map(stopTime => (
-        <div className="Stops__item" key={stopKey(stopTime)}>
-          <div className="Stops__item--name">
-            {LineName(stopTime.trip.route.shortName)}
-            {LineDestination(stopTime.trip.route.longName)}
-          </div>
-          <div className="Stops__item--time">
-            { getTimeIfMoreThan60min(minutesToDeparture(stopTime), stopTime.realtimeArrival) }
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export default Stop
+export default Stops
