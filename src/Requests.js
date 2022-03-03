@@ -1,16 +1,27 @@
 import 'whatwg-fetch'
 import moment from 'moment'
+const parseXml = require('xml2js').parseString
 
-const getLatestTemp = () => {
+export const getLatestTemp = () => {
   return new Promise(resolve => {
     const hourAgoUtc = moment().subtract(1, "hour").utc().format();
-    return fetch(`http://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Saunalahti,Espoo&parameters=temperature&starttime=${hourAgoUtc}`)
+    return fetch(`http://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Saunalahti,Espoo&parameters=temperature,windspeedms&starttime=${hourAgoUtc}`)
+      .then(res => res.text())
       .then(res => {
         parseXml(res, function (err, result) {
           const results = result["wfs:FeatureCollection"]["wfs:member"];
-          const latest = results[results.length - 1];
-          const latestTemp = latest["BsWfs:BsWfsElement"][0]["BsWfs:ParameterValue"][0];
-          resolve(latestTemp)
+          const latest1 = results[results.length - 1];
+          const latest2 = results[results.length - 2];
+
+          const name1 = latest1["BsWfs:BsWfsElement"][0]["BsWfs:ParameterName"][0];
+          const value1 = latest1["BsWfs:BsWfsElement"][0]["BsWfs:ParameterValue"][0];
+
+          const name2 = latest2["BsWfs:BsWfsElement"][0]["BsWfs:ParameterName"][0];
+          const value2 = latest2["BsWfs:BsWfsElement"][0]["BsWfs:ParameterValue"][0];
+          resolve({
+            [name1]: value1,
+            [name2]: value2,
+          })
         });
       }).catch(err => {
         console.warn('Error getting current temp', err)

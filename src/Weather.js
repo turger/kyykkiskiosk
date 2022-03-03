@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 import Emoji from './Emoji'
 import weatherEmojis from './weatherEmojis'
-import Arrow from './assets/up-arrow.svg'
 import './Weather.css'
-import { getFmiWeatherData } from './Requests'
+import { getFmiWeatherData, getLatestTemp } from './Requests'
 import { parseXmlWeatherData, formatTime } from './utils/utils'
-import {ReactSVG} from 'react-svg'
 
 class Weather extends Component {
   constructor(props) {
     super(props)
     this.state = {
       forecast: null,
+      latest: null,
     }
     this._windexes = {}
   }
@@ -30,14 +29,17 @@ class Weather extends Component {
     })
   }
 
-  getCurrentWeatherData() {
-    getFmiWeatherData()
-      .then(data => {
-        parseXmlWeatherData(data)
-          .then(forecast => {
-            this.setState({ forecast })
-          })
-      })
+  async getCurrentWeatherData() {
+    const [ latest, weatherData ] = await Promise.all([
+      getLatestTemp(),
+      getFmiWeatherData(),
+    ])
+
+    console.log(latest)
+
+    const forecast = await parseXmlWeatherData(weatherData)
+
+    this.setState({ forecast, latest })
   }
 
   chooseIcon(temp, icon) {
@@ -57,26 +59,28 @@ class Weather extends Component {
         <div className="Weather__item__time">{ formatTime(weather.time)}</div>
         <div className="Weather__item__temp">{ Math.round(weather.temperature) }°</div>
         <Emoji name={ this.chooseIcon(Math.round(weather.temperature), weather.weathersymbol3) }/>
-        <div className="Weather__item__wind" key={key} ref={c => (this._windexes[key] = {direction: `${weather.winddirection}deg` || '0deg', obj: c})}>
+        <div className="Weather__item__wind" key={key}>
           <div className="Weather__item__wind__ms">{ Math.round(weather.windspeedms) }</div>
-          <ReactSVG
-            src={Arrow}
-            className="Direction__arrow"
-          />
         </div>
       </div>
     )
   }
 
   render() {
-    const {forecast} = this.state
+    const {forecast, latest} = this.state
     if (!forecast) return null
     return (
       <div className="Weather">
+        { latest &&
+          <div className="Weather__item">
+            <div className="Weather__item__currentTemp">{ latest.temperature }°</div>
+            <div className="Weather__item__currentWind">{ Math.round(latest.windspeedms) }</div>
+          </div>
+        }
          <div className="Weather__item">
            { forecast
               .filter((w, key) => key % 3 === 0)
-              .slice(0, 4)
+              .slice(0, 5)
               .map(weather => this.renderWeatherItem(weather))
            }
          </div>
