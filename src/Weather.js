@@ -76,7 +76,7 @@ class Weather extends Component {
          <div className="Weather__item">
            { forecast
               .filter((w, key) => key % 3 === 0)
-              .slice(0, 8)
+              .slice(0, 4)
               .map(weather => this.renderWeatherItem(weather))
            }
          </div>

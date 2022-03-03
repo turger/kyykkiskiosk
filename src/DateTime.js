@@ -55,13 +55,11 @@ class DateTime extends Component {
     if (!this.state.date && !this.state.time) return null
     return (
       <div className="DateTime">
-          <div>
-            <div className="DateTime__time">
-              { this.state.time }
-            </div>
-            <div className="DateTime__date">
-              { this.state.date }
-            </div>
+          <div className="DateTime__time">
+            { this.state.time }
+          </div>
+          <div className="DateTime__date">
+            { this.state.date }
           </div>
           <div className="DateTime__date">
             { this.state.day }

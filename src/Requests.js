@@ -1,7 +1,7 @@
 import 'whatwg-fetch'
 
 export const getFmiWeatherData = () => new Promise(resolve => {
-  fetch('https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::forecast::hirlam::surface::point::simple&place=kaisaniemi,helsinki&maxlocations=1')
+  fetch('https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::forecast::hirlam::surface::point::simple&place=saunalahti,espoo&maxlocations=1')
     .then(res => {
       if (res.status !== 200) throw new Error(res.status)
       resolve(res.text())
