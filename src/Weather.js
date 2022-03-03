@@ -29,17 +29,16 @@ class Weather extends Component {
     })
   }
 
-  async getCurrentWeatherData() {
-    const [ latest, weatherData ] = await Promise.all([
+  getCurrentWeatherData() {
+    Promise.all([
       getLatestTemp(),
       getFmiWeatherData(),
-    ])
-
-    console.log(latest)
-
-    const forecast = await parseXmlWeatherData(weatherData)
-
-    this.setState({ forecast, latest })
+    ]).then(([ latest, weatherData ]) => {
+      parseXmlWeatherData(weatherData).then(forecast => {
+        this.setState({ forecast })
+      })
+      this.setState({ latest })
+    })
   }
 
   chooseIcon(temp, icon) {
