@@ -1,4 +1,22 @@
 import 'whatwg-fetch'
+import moment from 'moment'
+
+const getLatestTemp = () => {
+  return new Promise(resolve => {
+    const hourAgoUtc = moment().subtract(1, "hour").utc().format();
+    return fetch(`http://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Saunalahti,Espoo&parameters=temperature&starttime=${hourAgoUtc}`)
+      .then(res => {
+        parseXml(res, function (err, result) {
+          const results = result["wfs:FeatureCollection"]["wfs:member"];
+          const latest = results[results.length - 1];
+          const latestTemp = latest["BsWfs:BsWfsElement"][0]["BsWfs:ParameterValue"][0];
+          resolve(latestTemp)
+        });
+      }).catch(err => {
+        console.warn('Error getting current temp', err)
+      })
+  })
+}
 
 export const getFmiWeatherData = () => new Promise(resolve => {
   fetch('https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::forecast::hirlam::surface::point::simple&place=saunalahti,espoo&maxlocations=1')
