@@ -60,7 +60,7 @@ class Weather extends Component {
         <div className="Weather__item__temp">{ Math.round(weather.temperature) }°</div>
         <Emoji name={ this.chooseIcon(Math.round(weather.temperature), weather.weathersymbol3) }/>
         <div className="Weather__item__wind" key={key}>
-          <div className="Weather__item__wind__ms">{ Math.round(weather.windspeedms) }</div>
+          <div className="Weather__item__wind__ms"><span className="Weather__item__wind__value">{ Math.round(weather.windspeedms) }</span></div>
         </div>
       </div>
     )
@@ -71,13 +71,14 @@ class Weather extends Component {
     if (!forecast) return null
     return (
       <div className="Weather">
-        { latest &&
-          <div className="Weather__item">
-            <div className="Weather__item__currentTemp">{ latest.temperature }°</div>
-            <div className="Weather__item__currentWind">{ Math.round(latest.windspeedms) }</div>
-          </div>
-        }
+
          <div className="Weather__item">
+           { latest &&
+             <div className="Weather__current">
+               <div className="Weather__item__currentTemp">{ latest.temperature }°</div>
+               <div className="Weather__item__currentWind"><span className="Weather__item__wind__value">{ Math.round(latest.windspeedms) }</span></div>
+             </div>
+           }
            { forecast
               .filter((w, key) => key % 3 === 0)
               .slice(0, 5)
@@ -87,7 +88,6 @@ class Weather extends Component {
        </div>
     )
   }
-
 }
 
 export default Weather
