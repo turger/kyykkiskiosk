@@ -23,7 +23,8 @@ const Stop = ({stops, directions}) => (
               {directions.find(direction => direction.route.shortName === stopTime.trip.route.shortName).headsign}
             </div>
             <div className="Stop__route--time">
-                { timeToDeparture }
+                <span>{ timeToDeparture }</span>
+                <span className="Stop__route--time--mins">min</span>
             </div>
           </div>
         )
