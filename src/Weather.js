@@ -12,7 +12,6 @@ class Weather extends Component {
       forecast: null,
       latest: null,
     }
-    this._windexes = {}
   }
 
   componentDidMount() {
@@ -20,25 +19,30 @@ class Weather extends Component {
     setInterval(() => {
       this.getCurrentWeatherData()
     } , 600000)
-  }
 
-  componentDidUpdate() {
-    Object.keys(this._windexes).forEach(i => {
-      const windex = this._windexes[i]
-      windex.obj && windex.obj.style.setProperty('--deg', windex.direction)
-    })
+
+    setTimeout(() => {
+      window.location.reload()
+    }, 1000 * 60 * 60 * 24)
   }
 
   getCurrentWeatherData() {
-    Promise.all([
-      getLatestTemp(),
-      getFmiWeatherData(),
-    ]).then(([ latest, weatherData ]) => {
-      parseXmlWeatherData(weatherData).then(forecast => {
-        this.setState({ forecast })
+    try {
+      Promise.all([
+        getLatestTemp(),
+        getFmiWeatherData(),
+      ]).then(([ latest, weatherData ]) => {
+        parseXmlWeatherData(weatherData).then(forecast => {
+          this.setState({ forecast })
+        })
+        this.setState({ latest })
       })
-      this.setState({ latest })
-    })
+        .catch(err => {
+          console.warn('Error getting weather data', err)
+        })
+    } catch (err) {
+      console.warn('Error getting weather data', err)
+    }
   }
 
   chooseIcon(temp, icon) {
@@ -79,6 +83,7 @@ class Weather extends Component {
              </div>
            }
            { forecast
+              .filter(item => item.time > new Date().toISOString())
               .filter((w, key) => key % 3 === 0)
               .slice(0, 5)
               .map(weather => this.renderWeatherItem(weather))
