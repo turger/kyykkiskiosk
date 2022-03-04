@@ -10,3 +10,13 @@
   display: flex;
   width: 100%;
 }
+
+.Blinking {
+  animation: blinker 1s step-start infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}

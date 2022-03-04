@@ -30,7 +30,8 @@ class DateTime extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      time: null,
+      timeHour: null,
+      timeMinute: null,
       date: null,
       day: null,
     }
@@ -45,21 +46,24 @@ class DateTime extends Component {
 
   setTime() {
     this.setState({
-      time: moment().format('HH:mm'),
+      timeHour: moment().format('HH'),
+      timeMinute: moment().format('mm'),
       date: moment().format('D.M.YYYY'),
       day: getFinnishDay(moment().format('dddd')),
     })
   }
 
   render() {
-    if (!this.state.date && !this.state.time) return null
+    if (!this.state.date || !this.state.timeHour) return null
     return (
       <div className="DateTime">
-          <div className="DateTime__time">
-            { this.state.time }
-          </div>
           <div className="DateTime__date">
             { this.state.date }
+          </div>
+          <div className="DateTime__time">
+            <span>{ this.state.timeHour }</span>
+            <span className={"Blinking"}>:</span>
+            <span>{ this.state.timeMinute }</span>
           </div>
           <div className="DateTime__date">
             { this.state.day }
