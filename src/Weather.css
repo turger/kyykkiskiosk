@@ -64,7 +64,11 @@
 
 .Weather__item__wind__value {
   margin-top: 5px;
+}
+
+.Weather__item__current__wind__value {
   margin-right: 2px;
+  margin-top: 5px;
 }
 
 .Weather__item__wind {

@@ -93,7 +93,7 @@ class Weather extends Component {
            { latest &&
              <div className="Weather__current">
                <div className="Weather__item__currentTemp">{ latest.temperature }°</div>
-               <div className="Weather__item__currentWind"><span className="Weather__item__wind__value">{ Math.round(latest.windspeedms) }</span></div>
+               <div className="Weather__item__currentWind"><span className="Weather__item__current__wind__value">{ Math.round(latest.windspeedms) }</span></div>
              </div>
            }
            { forecast
