@@ -39,6 +39,8 @@ class Stops extends Component {
       const stopsData = this.state.stopsData
       stopsData[i] = merge ? this.mergeStops(stopsData[i], stopTimes) : stopTimes
       this.setState({ stopsData })
+    }).catch(err => {
+      console.warn('Error getting schedule', err)
     })
   }
 
