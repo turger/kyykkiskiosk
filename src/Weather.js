@@ -83,6 +83,7 @@ class Weather extends Component {
              </div>
            }
            { forecast
+              .slice(1, 20)
               .filter(item => item.time > new Date().toISOString())
               .filter((w, key) => key % 3 === 0)
               .slice(0, 5)
