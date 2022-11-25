@@ -38,20 +38,18 @@ class Weather extends Component {
     }, 1000 * 60 * 60 * 24)
   }
 
-  getCurrentWeatherData() {
+  async getCurrentWeatherData() {
     try {
-      Promise.all([
-        getLatestTemp(),
-        getFmiWeatherData(),
-      ]).then(([ latest, weatherData ]) => {
-        parseXmlWeatherData(weatherData).then(forecast => {
-          this.setState({ forecast })
-        })
-        this.setState({ latest })
-      })
-        .catch(err => {
-          console.warn('Error getting weather data', err)
-        })
+
+      const latest = await getLatestTemp()
+
+      this.setState({ latest })
+
+      const weatherData = await getFmiWeatherData()
+
+      const forecast = await parseXmlWeatherData(weatherData)
+
+      this.setState({ forecast })
     } catch (err) {
       console.warn('Error getting weather data', err)
     }
@@ -85,10 +83,9 @@ class Weather extends Component {
 
   render() {
     const {forecast, latest} = this.state
-    if (!forecast) return null
+
     return (
       <div className="Weather">
-
          <div className="Weather__item">
            { latest &&
              <div className="Weather__current">
@@ -96,7 +93,7 @@ class Weather extends Component {
                <div className="Weather__item__currentWind"><span className="Weather__item__current__wind__value">{ Math.round(latest.windspeedms) }</span></div>
              </div>
            }
-           { forecast
+           { forecast && forecast
               .filter(item => item.time > new Date().toISOString())
               .slice(1, 20)
               .filter((w, key) => key % 3 === 0)
