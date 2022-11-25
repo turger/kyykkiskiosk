@@ -2,6 +2,17 @@ import 'whatwg-fetch'
 import moment from 'moment'
 const parseXml = require('xml2js').parseString
 
+export const getYRWeatherData = () => new Promise(resolve => {
+  fetch(`https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${process.env.REACT_APP_LAT}&lon=${process.env.REACT_APP_LON}`)
+    .then(res => {
+      if (res.status !== 200) throw new Error(res.status)
+      resolve(res.text())
+    })
+    .catch(err => {
+      console.warn(err)
+    })
+})
+
 export const getLatestTemp = () => {
   return new Promise(resolve => {
     const hourAgoUtc = moment().subtract(1, "hour").utc().format();

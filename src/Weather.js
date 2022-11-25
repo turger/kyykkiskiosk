@@ -1,21 +1,10 @@
 import React, { Component } from 'react'
-import { getSunrise, getSunset } from 'sunrise-sunset-js'
-import Emoji from './Emoji'
-import nightWeatherEmojis from './nightWeatherEmojis'
-import weatherEmojis from './weatherEmojis'
+import * as _ from 'lodash'
+import classNames from 'classnames'
 import './Weather.css'
-import { getFmiWeatherData, getLatestTemp } from './Requests'
-import { parseXmlWeatherData, formatTime } from './utils/utils'
-
-const HELSINKI_LAT = 60.192059
-const HELSINKI_LNG = 24.945831
-
-const isNight = date => {
-  const sunrise = getSunrise(HELSINKI_LAT, HELSINKI_LNG, new Date(date)).toISOString()
-  const sunset = getSunset(HELSINKI_LAT, HELSINKI_LNG, new Date(date)).toISOString()
-
-  return date < sunrise || date > sunset
-}
+import { getLatestTemp, getYRWeatherData } from './Requests'
+import { formatTime } from './utils/utils'
+import YrWeatherIcon from './YrWeatherIcon'
 
 class Weather extends Component {
   constructor(props) {
@@ -45,44 +34,49 @@ class Weather extends Component {
 
       this.setState({ latest })
 
-      const weatherData = await getFmiWeatherData()
+      const yrForecast = await getYRWeatherData()
 
-      const forecast = await parseXmlWeatherData(weatherData)
-
-      this.setState({ forecast })
+      this.setState({ yrForecast: JSON.parse(yrForecast) })
     } catch (err) {
       console.warn('Error getting weather data', err)
     }
   }
 
-  chooseIcon(temp, icon, time) {
-    const night = isNight(time)
+  renderWeatherItem = (weather) => {
+    const details = _.get(weather, "data.instant.details")
+    const key = weather.time
+    const symbol = _.get(weather, "data.next_1_hours.summary.symbol_code")
 
-    if (temp > 20 && icon === 1) {
-      return ":sun_with_face:"
-    } else if (temp <= -10 && icon >= 41 && icon <= 53) {
-      return ":snowman2:"
-    } else {
-      return (night && nightWeatherEmojis[icon]) || weatherEmojis[icon] || ':poop:'
-    }
-  }
+    const rawTemp = details.air_temperature
+    const roundedString = Math.round(rawTemp).toString()
+    const temperatureToShow = rawTemp < 0 && !roundedString.includes('-')
+      ? `-${roundedString}`
+      : roundedString
 
-  renderWeatherItem(weather) {
-    const key = weather.time + '-' + weather.windspeedms
     return (
-      <div className="Weather__item__box" key={weather.time}>
-        <div className="Weather__item__time">{ formatTime(weather.time)}</div>
-        <div className="Weather__item__temp">{ Math.round(weather.temperature) }°</div>
-        <Emoji name={ this.chooseIcon(Math.round(weather.temperature), weather.weathersymbol3, weather.time) }/>
-        <div className="Weather__item__wind" key={key}>
-          <div className="Weather__item__wind__ms"><span className="Weather__item__wind__value">{ Math.round(weather.windspeedms) }</span></div>
+      <div className="Weather__item__box" key={key}>
+        <div className="Weather__item__time">{formatTime(weather.time)}</div>
+        <div className={"Weather__item__temp"}>
+          {temperatureToShow}°
+        </div>
+        <YrWeatherIcon name={symbol} />
+        <div
+          className="Weather__item__wind"
+          key={key}
+        >
+          <div className="Weather__item__wind__ms">
+            {Math.round(details.wind_speed)}
+          </div>
         </div>
       </div>
     )
   }
 
+
   render() {
-    const {forecast, latest} = this.state
+    const {yrForecast, latest} = this.state
+
+    const timeseries = _.get(yrForecast, "properties.timeseries")
 
     return (
       <div className="Weather">
@@ -93,13 +87,11 @@ class Weather extends Component {
                <div className="Weather__item__currentWind"><span className="Weather__item__current__wind__value">{ Math.round(latest.windspeedms) }</span></div>
              </div>
            }
-           { forecast && forecast
-              .filter(item => item.time > new Date().toISOString())
-              .slice(1, 20)
-              .filter((w, key) => key % 3 === 0)
-              .slice(0, 5)
-              .map(weather => this.renderWeatherItem(weather))
-           }
+           {timeseries && timeseries
+             .slice(1, 20)
+             .filter((w, key) => key % 3 === 0)
+             .slice(0, 5)
+             .map((weather) => this.renderWeatherItem(weather))}
          </div>
        </div>
     )
