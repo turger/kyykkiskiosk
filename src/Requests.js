@@ -16,7 +16,7 @@ export const getYRWeatherData = () => new Promise(resolve => {
 export const getLatestTemp = () => {
   return new Promise(resolve => {
     const hourAgoUtc = moment().subtract(1, "hour").utc().format();
-    return fetch(`http://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Saunalahti,Espoo&parameters=temperature,windspeedms&starttime=${hourAgoUtc}`)
+    return fetch(`https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::simple&place=Saunalahti,Espoo&parameters=temperature,windspeedms&starttime=${hourAgoUtc}`)
       .then(res => res.text())
       .then(res => {
         parseXml(res, function (err, result) {
