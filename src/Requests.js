@@ -59,7 +59,8 @@ const doQuery = query => new Promise(resolve => {
   fetch('https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql', {
     method: 'post',
     headers: {
-      'Content-Type': 'application/graphql'
+      'Content-Type': 'application/graphql',
+      'digitransit-subscription-key': process.env.REACT_APP_DIGITRANSIT_API_KEY
     },
     body: query
   })
@@ -71,7 +72,7 @@ const doQuery = query => new Promise(resolve => {
       console.warn(err)
       setTimeout(() => {
         resolve(doQuery(query))
-      }, 10000)
+      }, 30000)
     })
 })
 
