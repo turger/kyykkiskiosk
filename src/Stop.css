@@ -1,12 +1,13 @@
 .Stop {
   padding: 0;
+  font-family: 'Aldrich', sans-serif;
 }
 
 .Stop__route {
   display: flex;
   align-items: center;
-  font-size: 26px;
-  padding-bottom: 3px;
+  font-size: 28px;
+  padding-bottom: 4px;
 }
 
 .Stop__route:last-child {
@@ -15,13 +16,14 @@
 
 .Stop__route--number {
   flex: 2;
+  margin-top: 4px;
   min-width: 30px;
   text-align: center;
 }
 
 .Stop__route--headsign {
   flex: 4;
-  font-size: 24px;
+  font-size: 21px;
 }
 
 .Stop__route--time {
