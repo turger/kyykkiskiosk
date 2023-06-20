@@ -13,6 +13,8 @@ const Stop = ({stops, directions}) => (
       .slice(0, 3)
       .map(stopTime => {
         const timeToDeparture = minutesToDeparture(stopTime.realtimeArrival, stopTime.serviceDay)
+        const showMinutes = Number.isInteger(timeToDeparture)
+
         return(
           <div className="Stop__route" key={`${stopTime.trip.route.gtfsId}-${stopTime.realtimeArrival}`}>
             <Vehicle mode={ stopTime.trip.route.mode }/>
@@ -24,7 +26,7 @@ const Stop = ({stops, directions}) => (
             </div>
             <div className="Stop__route--time">
                 <span>{ timeToDeparture }</span>
-                <span className="Stop__route--time--mins">min</span>
+              { showMinutes && <span className="Stop__route--time--mins">min</span> }
             </div>
           </div>
         )
